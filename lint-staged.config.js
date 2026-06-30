@@ -9,7 +9,7 @@ const config = {
     'eslint -c eslint.config.ts --fix',
     'prettier --write --no-error-on-unmatched-pattern',
   ],
-  './src/**/*.{js,jsx,cjs,mjs,ts,tsx}': [
+  './src/**/*.{js,jsx,cjs,mjs,ts,tsx,css}': [
     'eslint -c eslint.config.ts --fix',
     'prettier --write --no-error-on-unmatched-pattern',
   ],

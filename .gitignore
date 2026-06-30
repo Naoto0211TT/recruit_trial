@@ -30,3 +30,7 @@ pnpm-debug.log*
 # temporary files
 .tmp/
 src/icon-font/preview/
+
+# certifications
+certs/*
+!certs/.gitkeep

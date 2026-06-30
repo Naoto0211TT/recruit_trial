@@ -6,3 +6,4 @@ template/*
 .astro/*
 .tmp/*
 src/statics/*
+src/icon-font/preview/*

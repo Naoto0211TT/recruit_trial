@@ -2,6 +2,7 @@ import type { ConfigWithExtends, ConfigWithExtendsArray } from '@eslint/config-h
 
 import css from '@eslint/css';
 import js from '@eslint/js';
+import markdown from '@eslint/markdown';
 import tsParser from '@typescript-eslint/parser';
 import configPrettier from 'eslint-config-prettier';
 import pluginAstro from 'eslint-plugin-astro';
@@ -10,6 +11,7 @@ import pluginUnicorn from 'eslint-plugin-unicorn';
 import pluginUnusedImport from 'eslint-plugin-unused-imports';
 import { defineConfig, globalIgnores } from 'eslint/config';
 import globals from 'globals';
+import { tailwind4 } from 'tailwind-csstree';
 import tseslint from 'typescript-eslint';
 
 const ignoreConfig = globalIgnores([
@@ -19,11 +21,17 @@ const ignoreConfig = globalIgnores([
   '.astro/*',
   'template/*',
   '.tmp/*',
-  'src/**/statics/*',
+  'src/statics/*',
+  'src/icon-font/preview/*',
 ]);
+
+const scriptFiles = ['**/*.js', '**/*.cjs', '**/*.mjs', '**/*.ts', '**/*.tsx', '**/*.astro'];
+const nonScriptFiles = ['**/*.css', '**/*.md'];
 
 const globalConfig: ConfigWithExtendsArray = [
   {
+    files: scriptFiles,
+    ignores: nonScriptFiles,
     extends: ['js/recommended'],
     languageOptions: {
       globals: { ...globals.browser, ...globals.node },
@@ -41,10 +49,20 @@ const globalConfig: ConfigWithExtendsArray = [
     },
   },
   tseslint.configs.recommended,
-  pluginPerfectionist.configs['recommended-natural'],
-  pluginUnicorn.configs.recommended,
+  {
+    files: scriptFiles,
+    ignores: nonScriptFiles,
+    extends: [pluginPerfectionist.configs['recommended-natural']],
+  },
+  {
+    files: scriptFiles,
+    ignores: nonScriptFiles,
+    extends: [pluginUnicorn.configs.recommended],
+  },
   configPrettier,
   {
+    files: scriptFiles,
+    ignores: nonScriptFiles,
     rules: {
       camelcase: [0, { properties: 'never' }],
       'class-methods-use-this': 0,
@@ -133,6 +151,7 @@ const globalConfig: ConfigWithExtendsArray = [
           },
         },
       ],
+      'unicorn/consistent-class-member-order': ['off'],
       'unicorn/filename-case': [
         'error',
         {
@@ -259,7 +278,19 @@ const cssConfig: ConfigWithExtends = {
   files: ['**/*.css'],
   plugins: { css },
   language: 'css/css',
-  extends: ['css/recommended'],
+  languageOptions: {
+    customSyntax: tailwind4,
+  },
+  extends: ['css/recommended', configPrettier],
+  rules: {
+    'css/no-empty-blocks': 1,
+  },
+};
+
+const markdownConfig: ConfigWithExtends = {
+  files: ['**/*.md'],
+  plugins: { markdown },
+  extends: ['markdown/recommended'],
 };
 
 export default defineConfig([
@@ -268,5 +299,6 @@ export default defineConfig([
   tsConfig,
   astroConfig,
   cssConfig,
+  markdownConfig,
   ignoreConfig,
 ]);
