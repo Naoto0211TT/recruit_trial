@@ -26,3 +26,7 @@ pnpm-debug.log*
 
 # editor
 .vscode/settings.json
+
+# temporary files
+.tmp/
+src/icon-font/preview/
