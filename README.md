@@ -106,10 +106,9 @@ cp .env.example .env
 ローカル環境用の自己証明書を発行してください。
 
 ``` bash
-cd certs
 brew install mkcert # mkcertが未インストールの場合
 mkcert -install # mkcertが未インストールの場合
-mkcert -cert-file ./server.crt -key-file ./server.key localhost
+mkcert -cert-file ./certs/server.crt -key-file ./certs/server.key localhost
 ```
 
 ### 4.npmパッケージのインストール
