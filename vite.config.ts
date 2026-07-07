@@ -45,31 +45,31 @@ export const baseConfig: UserConfig = {
     devSourcemap: true,
   },
   build: {
-    sourcemap: isDevMode,
-    emptyOutDir: false,
-    minify: 'terser',
-    terserOptions: {
-      mangle: true,
-      toplevel: true,
-      compress: {
-        drop_console: true,
-      },
-    },
     rolldownOptions: {
       external: ['src/statics'],
       output: {
-        hashCharacters: `hex`,
-        entryFileNames: (info) => {
-          const basename = path.parse(info.name).name || 'index';
-          return `${assetsDir}/js/${basename}-[hash].js`;
-        },
-        chunkFileNames: `${assetsDir}/js/chunk-[hash].js`,
         assetFileNames: (info) => {
           const name = info.names[0] ?? 'asset';
           const parsed = path.parse(name);
           const extension = parsed.ext.slice(1) || 'assets';
 
           return `${assetsDir}/${extension}/${parsed.name}-[hash]${parsed.ext}`;
+        },
+      },
+    },
+  },
+  environments: {
+    client: {
+      build: {
+        rolldownOptions: {
+          output: {
+            hashCharacters: 'hex',
+            entryFileNames: (info) => {
+              const basename = path.parse(info.name).name || 'index';
+              return `${assetsDir}/js/${basename}-[hash].js`;
+            },
+            chunkFileNames: `${assetsDir}/js/chunk-[hash].js`,
+          },
         },
       },
     },
