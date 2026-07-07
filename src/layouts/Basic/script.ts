@@ -1,11 +1,13 @@
-import Stats from '@/lib/stats';
+import type Stats from '@/lib/stats';
 
 const handle = () => {
   let stats: Stats | undefined;
 
   if (import.meta.env.DEV) {
-    stats = new Stats();
-    stats.start();
+    void import('@/lib/stats').then((file) => {
+      stats = new file.default();
+      stats.start();
+    });
   }
 
   return () => {
