@@ -1,4 +1,9 @@
-import type { ConfigWithExtends, ConfigWithExtendsArray } from '@eslint/config-helpers';
+import type {
+  ConfigWithExtends,
+  ConfigWithExtendsArray,
+  ExtendsElement,
+  Plugin,
+} from '@eslint/config-helpers';
 
 import css from '@eslint/css';
 import js from '@eslint/js';
@@ -7,6 +12,7 @@ import tsParser from '@typescript-eslint/parser';
 import configPrettier from 'eslint-config-prettier';
 import pluginAstro from 'eslint-plugin-astro';
 import pluginPerfectionist from 'eslint-plugin-perfectionist';
+import pluginTailwindcss from 'eslint-plugin-tailwindcss';
 import pluginUnusedImport from 'eslint-plugin-unused-imports';
 import { defineConfig, globalIgnores } from 'eslint/config';
 import globals from 'globals';
@@ -225,6 +231,22 @@ const astroConfig: ConfigWithExtends = {
   },
 };
 
+const tailwindConfig: ConfigWithExtends = {
+  extends: [pluginTailwindcss.configs.recommended as ExtendsElement],
+  files: ['**/*.js', '**/*.jsx', '**/*.ts', '**/*.tsx', '**/*.astro'],
+  plugins: {
+    tailwindcss: pluginTailwindcss as unknown as Plugin,
+  },
+  settings: {
+    tailwindcss: {
+      cssConfigPath: 'src/styles/global.css',
+    },
+  },
+  rules: {
+    'tailwindcss/no-custom-classname': 1,
+  },
+};
+
 const cssConfig: ConfigWithExtends = {
   files: ['**/*.css'],
   plugins: { css },
@@ -250,6 +272,7 @@ export default defineConfig([
   tsConfig,
   astroConfig,
   cssConfig,
+  tailwindConfig,
   markdownConfig,
   ignoreConfig,
 ]);
