@@ -34,3 +34,7 @@ src/icon-font/preview/
 # certifications
 certs/*
 !certs/.gitkeep
+
+# settings
+.node-version
+mise.toml

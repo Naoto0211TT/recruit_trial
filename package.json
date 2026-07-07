@@ -14,20 +14,7 @@
   },
   "homepage": "https://github.com/lineaworks/recruit_trial#readme",
   "engines": {
-    "node": "24.18.0",
-    "npm": "11.18.0"
-  },
-  "devEngines": {
-    "runtime": {
-      "name": "node",
-      "version": "24.18.0",
-      "onFail": "download"
-    },
-    "packageManager": {
-      "name": "npm",
-      "version": "11.18.0",
-      "onFail": "warn"
-    }
+    "node": "^20.19.0 || >=22.12.0"
   },
   "scripts": {
     "astro": "astro",

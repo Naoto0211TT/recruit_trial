@@ -52,8 +52,8 @@
 - Astro (for HTML / component)
 - TypeScript / ESNext (for JavaScript)
 - CSS / Tailwind CSS (for stylesheet)
-- Node.js 24.18.0
-- npm 11.18.0
+- Node.js ^20.19.0 または >=22.12.0
+- npm
 
 実装に使用するフレームワーク、ライブラリ、プラグインの追加・変更は自由です。  
 ただし、追加・変更に伴って必要となる依存関係のインストール、設定ファイル、ビルドスクリプトの変更は、提出物に含めてください。
