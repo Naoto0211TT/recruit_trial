@@ -7,7 +7,6 @@ import tsParser from '@typescript-eslint/parser';
 import configPrettier from 'eslint-config-prettier';
 import pluginAstro from 'eslint-plugin-astro';
 import pluginPerfectionist from 'eslint-plugin-perfectionist';
-import pluginUnicorn from 'eslint-plugin-unicorn';
 import pluginUnusedImport from 'eslint-plugin-unused-imports';
 import { defineConfig, globalIgnores } from 'eslint/config';
 import globals from 'globals';
@@ -53,11 +52,6 @@ const globalConfig: ConfigWithExtendsArray = [
     files: scriptFiles,
     ignores: nonScriptFiles,
     extends: [pluginPerfectionist.configs['recommended-natural']],
-  },
-  {
-    files: scriptFiles,
-    ignores: nonScriptFiles,
-    extends: [pluginUnicorn.configs.recommended],
   },
   configPrettier,
   {
@@ -119,49 +113,6 @@ const globalConfig: ConfigWithExtendsArray = [
       ],
       'perfectionist/sort-interfaces': [2, { type: 'unsorted' }],
       'perfectionist/sort-object-types': [2, { type: 'unsorted' }],
-      'unicorn/prefer-global-this': 0,
-      'unicorn/name-replacements': [
-        1,
-        {
-          allowList: {
-            Args: true,
-            args: true,
-            Attrs: true,
-            attrs: true,
-            Btn: true,
-            btn: true,
-            Dev: true,
-            dev: true,
-            Dir: true,
-            dir: true,
-            Dist: true,
-            dist: true,
-            Mod: true,
-            mod: true,
-            Params: true,
-            params: true,
-            Prev: true,
-            prev: true,
-            Props: true,
-            props: true,
-            Tmp: true,
-            tmp: true,
-            Vars: true,
-            vars: true,
-          },
-        },
-      ],
-      'unicorn/consistent-class-member-order': ['off'],
-      'unicorn/filename-case': [
-        'error',
-        {
-          cases: {
-            kebabCase: true,
-            camelCase: true,
-            pascalCase: true,
-          },
-        },
-      ],
     },
   },
 ];
