@@ -29,6 +29,7 @@ pnpm-debug.log*
 
 # temporary files
 .tmp/
+stats.html
 src/icon-font/preview/
 
 # certifications
