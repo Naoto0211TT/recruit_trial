@@ -7,6 +7,40 @@
 弊社が通常のWEBサイトを制作する際に、使用しているフロントエンドの開発環境に近い構成の環境を使用して、実際にLPのコーディングを行っていただきます。  
 本テストは、フロントエンドエンジニアとしての基本的なスキル（主にWEBサイトのコーディング）と、弊社に入社いただけた際、スムーズに業務に合流できるかを確認させていただくためのものとなります。
 
+## 目次
+
+- [課題内容](#課題内容)
+  - [提出期限・提出内容](#提出期限提出内容)
+  - [実装・確認条件](#実装確認条件)
+  - [評価観点](#評価観点)
+  - [技術構成](#技術構成)
+  - [デザインファイル](#デザインファイル)
+  - [テストサイトURL](#テストサイトurl)
+  - [テストサイトFTP](#テストサイトftp)
+- [HOW TO START](#how-to-start)
+  - [1.リポジトリのFork](#1リポジトリのfork)
+  - [2.環境変数の設定](#2環境変数の設定)
+  - [3.ローカル環境用の証明書発行](#3ローカル環境用の証明書発行)
+  - [4.npmパッケージのインストール](#4npmパッケージのインストール)
+  - [5.フロントエンド開発環境の起動](#5フロントエンド開発環境の起動)
+  - [6.ブラウザで表示を確認](#6ブラウザで表示を確認)
+- [よくある詰まりどころ（FAQ）](#よくある詰まりどころfaq)
+  - [Git LFSのインストールに関するエラー](#git-lfsのインストールに関するエラー)
+  - [mkcertで証明書が発行できない／ブラウザで「保護されていない通信」と表示される](#mkcertで証明書が発行できないブラウザで保護されていない通信と表示される)
+  - [Node.jsのバージョンが合わない](#nodejsのバージョンが合わない)
+  - [`npm install` で依存関係のインストールに失敗する](#npm-install-で依存関係のインストールに失敗する)
+  - [`npm run dev` 実行時にポートが使用中と表示される](#npm-run-dev-実行時にポートが使用中と表示される)
+  - [`npm run check` / `npm run lint-script` / `npm run lint-html` でエラーが解消しない](#npm-run-check--npm-run-lint-script--npm-run-lint-html-でエラーが解消しない)
+- [フロントエンド開発環境について](#フロントエンド開発環境について)
+  - [ディレクトリ構造](#ディレクトリ構造)
+  - [各種コマンド](#各種コマンド)
+  - [Astro](#astro)
+  - [Stylesheet](#stylesheet)
+  - [JavaScript / TypeScript](#javascript--typescript)
+  - [Images](#images)
+  - [Static Files](#static-files)
+  - [Icon Font / SVG Sprite](#icon-font--svg-sprite)
+
 ## 課題内容
 
 - 日本CLT技術研究所WEBサイト内、CLT CROSS LAMINATED TIMBER(<https://nc-labo.jp/lp/clt/>) ページ（※一部課題用に変更しています）を再現してください。  
@@ -117,7 +151,7 @@ mkcert -cert-file ./certs/server.crt -key-file ./certs/server.key localhost
 下記コマンドを実行して、必要なパッケージ群をインストールしてください。
 
 ```npm
-npm ci
+npm install
 ```
 
 ### 5.フロントエンド開発環境の起動
@@ -129,6 +163,52 @@ npm run dev
 ### 6.ブラウザで表示を確認
 
 ローカルサーバーが起動して、規定のブラウザが起動し、ページが表示されます。
+
+## よくある詰まりどころ（FAQ）
+
+セットアップ中に見られる代表的なエラーとその対処法をまとめています。解決しない場合は、issueに`question`ラベルを付けてご質問ください。
+
+### Git LFSのインストールに関するエラー
+
+`git lfs pull`実行時に `git: 'lfs' is not a git command` と表示される場合、Git LFSが未インストールです。
+
+```bash
+brew install git-lfs
+git lfs install
+```
+
+導入後、リポジトリのルートで再度 `git lfs pull` を実行してください。
+
+### mkcertで証明書が発行できない／ブラウザで「保護されていない通信」と表示される
+
+- `mkcert: command not found` の場合は `brew install mkcert` を実行してください。
+- 初回のみ `mkcert -install` を実行し、ローカル用のルート証明書をOSに信頼させる必要があります（実行後、ブラウザの再起動が必要な場合があります）。
+- 証明書発行後もブラウザで警告が出る場合は、`mkcert -install` が正しく完了しているか、`certs/server.crt` と `certs/server.key` が生成されているかを確認してください。
+- Windows/Linuxの場合は、各OS向けの[mkcert公式手順](https://github.com/FiloSottile/mkcert)を参照してください。
+
+### Node.jsのバージョンが合わない
+
+`npm install` 実行時に `engine "node" is incompatible` と表示される場合、Node.jsのバージョンが `^20.19.0` または `>=22.12.0` の範囲外です。
+
+```bash
+node -v # バージョン確認
+```
+
+`nvm` 等のバージョン管理ツールを利用し、対象バージョンに切り替えてから再度パッケージインストールを実行してください。
+
+### `npm install` で依存関係のインストールに失敗する
+
+- `node_modules` と `package-lock.json` を削除してから再実行してください。
+- それでも解決しない場合、エラーログに表示されるパッケージ名とともにissueで質問してください。
+
+### `npm run dev` 実行時にポートが使用中と表示される
+
+他のプロセスが同じポートを使用している可能性があります。該当プロセスを終了してから再実行するか、`.env` でポート指定が可能な場合は変更してください。
+
+### `npm run check` / `npm run lint-script` / `npm run lint-html` でエラーが解消しない
+
+- 多くの指摘はAuto-fix（`--fix`）で自動修正されますが、型エラーやHTMLの意味的な指摘（見出し階層、alt属性の内容など）は自動修正されません。エラーメッセージを確認し、該当箇所を手動で修正してください。
+- AIエージェントを活用して原因調査・修正を行っていただいて問題ありません。
 
 ## フロントエンド開発環境について
 
