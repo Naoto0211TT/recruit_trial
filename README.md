@@ -255,10 +255,13 @@ npm run format
 ##### Astro Scoped Styles
 
 ```astro
-<!-- after your html -->
+<div class="page">
+  <h1>Title</h1>
+  <p>Text</p>
+</div>
 
 <style>
-  div {
+  .page {
     width: 100%;
     padding-inline: 5rem;
     background-image: url("/images/common/background_image.webp");
@@ -350,6 +353,82 @@ import "@/styles/page.css";
 - TypeScript / ESNextを使用できます。
 - 共通処理やユーティリティは `src/lib` や `src/constants` を必要に応じて使用してください。
 - Astroページやレイアウトから必要なスクリプトを読み込んで実装してください。
+
+#### 記述例
+
+##### Client-Side Scripts
+
+ブラウザ上で実行する処理は、Astroコンポーネント内の `<script>` に記述できます。
+
+```astro
+<button
+  type="button"
+  data-button
+>
+  Click
+</button>
+
+<script>
+  const button = document.querySelector<HTMLButtonElement>('[data-button]');
+
+  button?.addEventListener('click', () => {
+    console.log('clicked');
+  });
+</script>
+```
+
+##### Import Local Scripts
+
+処理を別ファイルに分ける場合は、`<script>` 内でJavaScript / TypeScriptファイルを `import` します。
+
+```ts
+// script.ts
+const button = document.querySelector<HTMLButtonElement>('[data-button]');
+
+button?.addEventListener('click', () => {
+  console.log('clicked');
+});
+```
+
+```astro
+<button
+  type="button"
+  data-button
+>
+  Click
+</button>
+
+<script>
+  import './script';
+</script>
+```
+
+##### Load External Scripts
+
+静的ファイルとして配置したJavaScript、または外部URLのJavaScriptを読み込む場合は、絶対パスで `<script src>` を使用できます。  
+配置場所については [Static Files](#static-files) を参照してください。
+
+```js
+// src/statics/page.js
+const button = document.querySelector('[data-button]');
+
+button?.addEventListener('click', () => {
+  console.log('clicked');
+});
+```
+
+```astro
+<button
+  type="button"
+  data-button
+>
+  Click
+</button>
+
+<script src="/page.js"></script>
+```
+
+[About Load External Scripts](https://docs.astro.build/ja/guides/client-side-scripts/#load-external-scripts)
 
 ### Images
 
