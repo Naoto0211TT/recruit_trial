@@ -239,6 +239,111 @@ npm run format
 - サイト全体のスタイルは `src/styles/global.css` を起点に読み込んでいます。
 - Tailwind CSSを利用できますが、必須ではありません。扱いやすい方法でスタイリングしていただいて構いません。
 - ページ固有のスタイルは、Astroコンポーネント内の `<style>` または関連するCSSファイルで管理してください。
+- Sass等のCSSプリプロセッサを導入いただいても問題ありません。
+
+#### 記述例
+
+##### Tailwind CSS
+
+```astro
+<div class="w-full bg-[url('/images/common/background_image.webp')] px-20 md:px-40">
+  <h1 class="text-2xl md:text-xl">Title</h1>
+  <p class="leading-loose tracking-wide text-gray-200">Text</p>
+</div>
+```
+
+##### Astro Scoped Styles
+
+```astro
+<!-- after your html -->
+
+<style>
+  div {
+    width: 100%;
+    padding-inline: 5rem;
+    background-image: url("/images/common/background_image.webp");
+  }
+
+  h1 {
+    font-size: 1.5rem;
+    line-height: 2rem;
+  }
+
+  p {
+    color: #e5e7eb;
+    line-height: 2;
+    letter-spacing: 0.025em;
+  }
+
+  @media (width >= 48rem) {
+    div {
+      padding-inline: 10rem;
+    }
+
+    h1 {
+      font-size: 1.25rem;
+      line-height: 1.75rem;
+    }
+  }
+</style>
+```
+
+##### External Styles
+
+外部CSSファイルを使う場合は、Astroコンポーネントやページのフロントマターで `import` します。
+
+```css
+/* src/styles/page.css */
+.page {
+  width: 100%;
+  padding-inline: 5rem;
+  background-image: url("/images/common/background_image.webp");
+}
+
+.page h1 {
+  font-size: 1.5rem;
+  line-height: 2rem;
+}
+
+.page p {
+  color: #e5e7eb;
+  line-height: 2;
+  letter-spacing: 0.025em;
+}
+
+@media (width >= 48rem) {
+  .page {
+    padding-inline: 10rem;
+  }
+
+  .page h1 {
+    font-size: 1.25rem;
+    line-height: 1.75rem;
+  }
+}
+```
+
+```astro
+---
+import "@/styles/page.css";
+---
+
+<div class="page">
+  <h1>Title</h1>
+  <p>Text</p>
+</div>
+```
+
+静的ファイルとして配置したCSS、または外部URLのCSSを読み込む場合は、絶対パスで `<link>` を使用できます。  
+配置場所については [Static Files](#static-files) を参照してください。
+
+```astro
+<head>
+  <link rel="stylesheet" href="/page.css" />
+</head>
+```
+
+[About External Styles](https://docs.astro.build/ja/guides/styling/#external-styles)
 
 ### JavaScript / TypeScript
 
