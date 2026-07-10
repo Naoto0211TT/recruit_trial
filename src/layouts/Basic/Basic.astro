@@ -1,0 +1,43 @@
+---
+import type { HTMLAttributes } from 'astro/types';
+
+import { siteName } from '@root/project.config';
+
+import { IMG_DIR } from '@/constants/config';
+import '@/styles/global.css';
+
+type ComponentHTMLAttributes = HTMLAttributes<'html'>;
+
+type Props = ComponentHTMLAttributes & {};
+
+const { ...attrs } = Astro.props;
+---
+
+<html
+  lang="ja"
+  {...attrs as ComponentHTMLAttributes}
+>
+  <head>
+    <meta charset="utf-8" />
+
+    <meta
+      content="width=device-width, initial-scale=1.0"
+      name="viewport"
+    />
+
+    <link
+      href={`${IMG_DIR}/common/favicon.svg`}
+      rel="icon"
+      type="image/svg+xml"
+    />
+
+    <title>{siteName}</title>
+  </head>
+  <body>
+    <slot />
+
+    <script>
+      import './script';
+    </script>
+  </body>
+</html>

@@ -1,0 +1,9 @@
+*.md
+node_modules/*
+public/*
+dist/*
+template/*
+.astro/*
+.tmp/*
+src/statics/*
+src/icon-font/preview/*
