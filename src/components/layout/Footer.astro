@@ -1,0 +1,92 @@
+---
+import { lpAssets } from '@/constants/assets';
+import { footer, site } from '@/constants/content';
+---
+
+<footer
+  class="bg-dark-gray text-white"
+  id="contact"
+>
+  <div
+    class="flex flex-col gap-[60px] px-5 pt-[60px] pb-10 md:gap-[clamp(60px,5.5556vw,80px)] md:px-[clamp(20px,8.3333vw,120px)] md:pb-[clamp(40px,4.1667vw,60px)]"
+  >
+    <div class="flex flex-col items-center">
+      <div
+        class="flex w-full flex-col items-center gap-5 border-b border-white/10 pb-5 md:w-auto md:border-0 md:pb-0"
+      >
+        <p class="text-base leading-[1.75] font-bold tracking-[0.4px]">{footer.telHeading}</p>
+        <div class="flex items-center gap-4 md:gap-6">
+          <img
+            alt=""
+            class="size-[52px] md:size-[clamp(52px,4.1667vw,60px)]"
+            height="60"
+            loading="lazy"
+            src={lpAssets.iconPhoneCircle}
+            width="60"
+          />
+          <div class="leading-none">
+            <a
+              class="font-lato text-2xl tracking-[0.48px] md:text-[clamp(24px,2.5vw,36px)] md:tracking-[0.72px]"
+              href={`tel:${site.tel.replace(/-/g, '')}`}
+            >
+              {site.tel}
+            </a>
+            <p
+              class="mt-1 text-[10px] tracking-[0.25px] md:text-[clamp(10px,0.9028vw,13px)] md:tracking-[0.325px]"
+            >
+              {site.telHours}
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="flex flex-col items-center">
+      <a
+        class="group -mb-0.5 flex flex-col items-center transition-opacity hover:opacity-70"
+        data-page-top
+        href="#top"
+      >
+        <img
+          alt=""
+          aria-hidden="true"
+          class="size-4 rotate-[-135deg]"
+          height="16"
+          loading="lazy"
+          src={lpAssets.iconArrowUp}
+          width="16"
+        />
+        <span class="font-lato leading-body text-sm tracking-[0.7px]">PAGE TOP</span>
+      </a>
+    </div>
+  </div>
+
+  <div
+    class="flex flex-col items-center gap-6 bg-black px-5 pt-[52px] pb-10 md:flex-row md:items-center md:justify-between md:px-[clamp(20px,8.3333vw,120px)] md:pb-[clamp(40px,3.6111vw,52px)]"
+  >
+    <div
+      class="leading-body flex w-full flex-wrap justify-center gap-[25px] border-b border-white/10 pb-[52px] text-sm tracking-[0.35px] md:w-auto md:border-0 md:pb-0"
+    >
+      {
+        footer.links.map((link) => (
+          <a
+            class="transition-opacity hover:opacity-70"
+            href="#top"
+          >
+            {link}
+          </a>
+        ))
+      }
+    </div>
+    <p class="font-lato leading-body text-center text-sm tracking-[0.35px] md:text-left">
+      {site.copyright}
+    </p>
+  </div>
+</footer>
+
+<script>
+  document.querySelector('[data-page-top]')?.addEventListener('click', (event) => {
+    event.preventDefault();
+    window.scrollTo({ behavior: 'smooth', top: 0 });
+  });
+</script>

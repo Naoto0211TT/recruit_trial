@@ -1,0 +1,29 @@
+---
+interface Props {
+  href?: string;
+  label?: string;
+  variant?: 'outline' | 'solid';
+  class?: string;
+}
+
+const {
+  href = '#',
+  label = 'お問い合わせ',
+  variant = 'outline',
+  class: className = 'md:w-[clamp(160px,13.8889vw,200px)]',
+} = Astro.props;
+
+const baseClass =
+  'inline-flex h-12 items-center justify-center px-2.5 text-sm leading-body font-bold tracking-[0.35px] transition-opacity hover:opacity-80';
+---
+
+<a
+  class:list={[
+    baseClass,
+    variant === 'outline' ? 'border border-white text-white' : 'text-dark-gray bg-white',
+    className,
+  ]}
+  href={href}
+>
+  {label}
+</a>

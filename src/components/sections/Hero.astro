@@ -1,0 +1,73 @@
+---
+import { lpAssets } from '@/constants/assets';
+import { hero, site } from '@/constants/content';
+---
+
+<section
+  class="bg-dark-gray relative text-white"
+  data-hero
+>
+  <div class="relative md:h-[clamp(0px,62.5vw,900px)]">
+    <div
+      class="relative -mb-8 aspect-square w-full md:absolute md:inset-y-0 md:mb-0 md:aspect-auto md:w-[69.444%]"
+    >
+      <img
+        alt=""
+        class="size-full object-cover"
+        fetchpriority="high"
+        height="900"
+        src={lpAssets.heroBg}
+        width="1000"
+      />
+    </div>
+
+    <div class="relative md:absolute md:inset-y-0 md:left-[69.444%] md:w-[50%]">
+      <div
+        aria-hidden="true"
+        class="absolute top-0 right-[280px] hidden h-full w-[280px] bg-black/50 md:right-[clamp(0px,19.4444vw,280px)] md:block md:w-[clamp(0px,19.4444vw,280px)]"
+      >
+      </div>
+
+      <div
+        class="bg-dark-gray relative flex flex-col gap-9 px-5 pt-0 pb-24 md:h-full md:justify-end md:gap-[clamp(36px,4.4444vw,64px)] md:bg-transparent md:px-[clamp(20px,5.2778vw,76px)] md:pb-[clamp(96px,12.5vw,180px)]"
+      >
+        <div class="flex flex-col gap-9 md:gap-[clamp(36px,4.4444vw,64px)]">
+          <p
+            class="hidden text-[26px] leading-[1.25] font-light tracking-[2.6px] md:block md:text-[clamp(20px,1.8056vw,26px)]"
+          >
+            {site.name}
+          </p>
+          <div class="w-full max-w-[335px] md:max-w-[clamp(335px,39.0972vw,563px)]">
+            <img
+              alt="ALO ANIMAL LIBERATION ORCHESTRA"
+              class="h-[67px] w-full object-contain object-left md:h-[clamp(67px,7.8472vw,113px)]"
+              height="113"
+              src={lpAssets.logoAlo}
+              width="563"
+            />
+          </div>
+        </div>
+
+        <div class="flex w-full flex-col gap-7 md:gap-[clamp(28px,4.1667vw,60px)]">
+          <div class="flex flex-col gap-5">
+            <p
+              class="text-[25px] leading-none tracking-[3.5px] md:text-[clamp(25px,2.6389vw,38px)] md:tracking-[5.32px]"
+            >
+              {hero.catchCopy}
+            </p>
+            <p
+              class="font-lato text-xs leading-none font-light tracking-[2.58px] md:text-[clamp(12px,1.25vw,18px)] md:tracking-[3.87px]"
+            >
+              {hero.subCopy}
+            </p>
+          </div>
+          <p
+            class="leading-body text-sm tracking-[0.35px] md:text-[clamp(14px,1.1111vw,16px)] md:font-bold md:tracking-[0.4px]"
+          >
+            {hero.description}
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

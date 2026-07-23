@@ -1,0 +1,32 @@
+---
+interface Props {
+  image: string;
+  imageAlt: string;
+  title: string;
+  description: string;
+  class?: string;
+}
+
+const { image, imageAlt, title, description, class: className = '' } = Astro.props;
+---
+
+<article class:list={['flex w-full flex-col gap-6 md:gap-[clamp(24px,2.7778vw,40px)]', className]}>
+  <div class="relative aspect-[640/427] w-full overflow-hidden">
+    <img
+      alt={imageAlt}
+      class="absolute inset-0 -top-[2.46%] -left-[2.46%] h-[104.91%] w-[104.92%] max-w-none object-cover"
+      height="427"
+      loading="lazy"
+      src={image}
+      width="640"
+    />
+  </div>
+  <div class="text-text flex flex-col gap-5 md:gap-[clamp(20px,2.2222vw,32px)]">
+    <h2 class="leading-heading text-base font-bold tracking-[0.4px]">{title}</h2>
+    <p
+      class="leading-body text-xs tracking-[0.3px] md:text-[clamp(12px,0.9028vw,13px)] md:tracking-[0.325px]"
+    >
+      {description}
+    </p>
+  </div>
+</article>

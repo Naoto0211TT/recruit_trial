@@ -1,0 +1,51 @@
+---
+import ProductCard from '@/components/ui/ProductCard.astro';
+import SectionHeading from '@/components/ui/SectionHeading.astro';
+import { lpAssets } from '@/constants/assets';
+import { product } from '@/constants/content';
+
+const productImages = [
+  lpAssets.product01,
+  lpAssets.product02,
+  lpAssets.product03,
+  lpAssets.product04,
+];
+---
+
+<section
+  class="bg-white"
+  id="product"
+>
+  <div
+    class="bg-primary flex flex-col gap-8 px-5 pt-16 pb-[132px] md:gap-[clamp(32px,2.7778vw,40px)] md:px-[clamp(20px,8.3333vw,120px)] md:pt-[clamp(64px,9.4444vw,136px)] md:pb-[clamp(132px,18.8889vw,272px)]"
+  >
+    <SectionHeading
+      color="white"
+      en={product.heading.en}
+      sub={product.heading.sub}
+    />
+    <div class="flex flex-col gap-5 text-white md:gap-[clamp(20px,1.6667vw,24px)]">
+      <h2
+        class="leading-heading text-[21px] font-medium tracking-[0.525px] md:text-[clamp(21px,1.6667vw,24px)] md:tracking-[0.6px]"
+      >
+        {product.lead}
+      </h2>
+      <p class="leading-body text-base tracking-[0.4px]">{product.body}</p>
+    </div>
+  </div>
+
+  <div
+    class="relative -mt-[92px] grid grid-cols-1 gap-10 px-5 pb-16 md:-mt-[clamp(92px,13.5417vw,195px)] md:grid-cols-2 md:gap-x-[clamp(40px,4.1667vw,60px)] md:gap-y-[clamp(40px,4.1667vw,60px)] md:px-[clamp(20px,8.3333vw,120px)] md:pb-[clamp(64px,10vw,144px)]"
+  >
+    {
+      product.items.map((item, index) => (
+        <ProductCard
+          description={product.cardBody}
+          image={productImages[index] ?? lpAssets.product01}
+          imageAlt={`${item.title}のイメージ`}
+          title={item.title}
+        />
+      ))
+    }
+  </div>
+</section>

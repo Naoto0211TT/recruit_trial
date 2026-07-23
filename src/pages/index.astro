@@ -1,9 +1,25 @@
 ---
-import { siteName } from '@root/project.config';
-
+import Footer from '@/components/layout/Footer.astro';
+import HamburgerMenu from '@/components/layout/HamburgerMenu.astro';
+import Header from '@/components/layout/Header.astro';
+import About from '@/components/sections/About.astro';
+import Hero from '@/components/sections/Hero.astro';
+import Product from '@/components/sections/Product.astro';
 import Layout from '@/layouts/Basic/Basic.astro';
 ---
 
 <Layout>
-  <h1>{siteName}</h1>
+  <div
+    class="lp-page"
+    id="top"
+  >
+    <Header />
+    <HamburgerMenu />
+    <main>
+      <Hero />
+      <About />
+      <Product />
+    </main>
+    <Footer />
+  </div>
 </Layout>

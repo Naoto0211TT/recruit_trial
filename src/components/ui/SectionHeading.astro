@@ -1,0 +1,45 @@
+---
+interface Props {
+  en: string;
+  sub: string;
+  color?: 'primary' | 'white';
+  class?: string;
+}
+
+const { en, sub, color = 'primary', class: className = '' } = Astro.props;
+
+const isWhite = color === 'white';
+---
+
+<div
+  class:list={[
+    'relative flex flex-col gap-1 pl-3 md:gap-[clamp(4px,0.8333vw,12px)] md:pl-0',
+    isWhite ? 'text-white' : 'text-primary',
+    className,
+  ]}
+>
+  <p
+    class:list={[
+      'font-lato text-[42px] leading-[1.75] font-medium tracking-[2.1px] md:text-[clamp(42px,4.1667vw,60px)] md:tracking-[3px]',
+      isWhite ? 'text-white' : 'text-primary',
+    ]}
+  >
+    {en}
+  </p>
+  <p
+    class:list={[
+      'font-lato leading-body text-xs tracking-[1.2px] opacity-50',
+      isWhite ? 'text-white' : 'text-primary',
+    ]}
+  >
+    {sub}
+  </p>
+  <span
+    aria-hidden="true"
+    class:list={[
+      'absolute h-px w-5',
+      isWhite ? 'bg-white' : 'bg-primary',
+      'top-[91px] -left-[30px] md:top-[clamp(91px,9.0278vw,130px)] md:-left-[clamp(30px,2.7778vw,40px)]',
+    ]}
+  ></span>
+</div>

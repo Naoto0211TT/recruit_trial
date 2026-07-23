@@ -1,16 +1,16 @@
 ---
 import type { HTMLAttributes } from 'astro/types';
 
-import { siteName } from '@root/project.config';
-
-import { IMG_DIR } from '@/constants/config';
 import '@/styles/global.css';
 
 type ComponentHTMLAttributes = HTMLAttributes<'html'>;
-
 type Props = ComponentHTMLAttributes & {};
 
 const { ...attrs } = Astro.props;
+
+const title = '日本ALO音楽研究所 | ANIMAL LIBERATION ORCHESTRA';
+const description =
+  '日本ALO音楽研究所の公式サイト。ALO（ANIMAL LIBERATION ORCHESTRA）について、商品情報などをご紹介します。';
 ---
 
 <html
@@ -19,19 +19,33 @@ const { ...attrs } = Astro.props;
 >
   <head>
     <meta charset="utf-8" />
-
     <meta
       content="width=device-width, initial-scale=1.0"
       name="viewport"
     />
-
+    <meta
+      content={description}
+      name="description"
+    />
     <link
-      href={`${IMG_DIR}/common/favicon.svg`}
+      href="/assets/images/common/favicon.svg"
       rel="icon"
       type="image/svg+xml"
     />
-
-    <title>{siteName}</title>
+    <link
+      href="https://fonts.googleapis.com"
+      rel="preconnect"
+    />
+    <link
+      crossorigin
+      href="https://fonts.gstatic.com"
+      rel="preconnect"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,500;0,700;1,400&family=Noto+Sans+JP:wght@300;400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <title>{title}</title>
   </head>
   <body>
     <slot />
