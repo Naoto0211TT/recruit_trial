@@ -7,13 +7,11 @@ import { hero, site } from '@/constants/content';
   class="bg-dark-gray relative text-white"
   data-hero
 >
-  <div class="relative overflow-hidden md:mx-auto md:h-[900px] md:max-w-[1440px]">
-    <div
-      class="relative -mb-[3.2rem] aspect-square w-full md:absolute md:inset-y-0 md:mb-0 md:aspect-auto md:w-[69.444%]"
-    >
+  <div class="relative overflow-hidden">
+    <div class="relative -mb-[3.2rem] aspect-square w-full md:mb-0 md:aspect-auto md:w-[69.444%]">
       <img
         alt=""
-        class="size-full object-cover"
+        class="block w-full"
         fetchpriority="high"
         height="900"
         src={lpAssets.heroBg}
@@ -21,15 +19,15 @@ import { hero, site } from '@/constants/content';
       />
     </div>
 
-    <div class="relative md:absolute md:inset-y-0 md:left-[69.444%] md:w-[50%]">
+    <div class="relative md:absolute md:inset-y-0 md:left-[50%] md:w-[50%]">
       <div
         aria-hidden="true"
-        class="absolute top-0 right-[280px] hidden h-full w-[280px] bg-black/50 md:block"
+        class="absolute top-0 left-0 hidden h-full w-[38.889%] bg-black/50 md:block"
       >
       </div>
 
       <div
-        class="bg-dark-gray relative flex flex-col gap-[3.6rem] px-[2rem] pt-0 pb-[9.6rem] md:h-full md:justify-end md:gap-[64px] md:bg-transparent md:px-[76px] md:pb-[180px]"
+        class="bg-dark-gray relative flex flex-col gap-[3.6rem] px-[2rem] pt-0 pb-[9.6rem] md:h-full md:translate-y-[32.5px] md:justify-center md:gap-[64px] md:bg-transparent md:px-[76px] md:pb-0"
       >
         <div class="flex flex-col gap-[3.6rem] md:gap-[64px]">
           <p class="hidden leading-[1.25] font-light tracking-[2.6px] md:block md:text-[26px]">
@@ -62,7 +60,14 @@ import { hero, site } from '@/constants/content';
           <p
             class="leading-body text-[1.4rem] tracking-[0.35px] md:text-[16px] md:font-bold md:tracking-[0.4px]"
           >
-            {hero.description}
+            {
+              hero.description.map((line) => (
+                <>
+                  {line}
+                  <br />
+                </>
+              ))
+            }
           </p>
         </div>
       </div>
