@@ -1,6 +1,7 @@
 import { IMG_DIR } from '@/constants/config';
 
 const lp = `${IMG_DIR}/lp`;
+const icons = `${IMG_DIR}/icons`;
 
 export const lpAssets = {
   heroBg: `${lp}/hero-bg.webp`,
@@ -15,4 +16,9 @@ export const lpAssets = {
   iconPhoneCircle: `${lp}/icon-phone-circle.webp`,
   iconArrowUp: `${lp}/icon-arrow-up.webp`,
   iconMail: `${lp}/icon-mail.webp`,
+} as const;
+
+export const iconAssets = {
+  mail: `${icons}/icon-mail.svg`,
+  phone: `${icons}/icon-phone.svg`,
 } as const;

@@ -11,7 +11,7 @@ import { hero, site } from '@/constants/content';
     <div class="relative -mb-[3.2rem] aspect-square w-full md:mb-0 md:aspect-auto md:w-[69.444%]">
       <img
         alt=""
-        class="block w-full"
+        class="absolute inset-0 size-full object-cover md:static md:h-auto"
         fetchpriority="high"
         height="900"
         src={lpAssets.heroBg}
@@ -61,10 +61,10 @@ import { hero, site } from '@/constants/content';
             class="leading-body text-[1.4rem] tracking-[0.35px] md:text-[16px] md:font-bold md:tracking-[0.4px]"
           >
             {
-              hero.description.map((line) => (
+              hero.description.map((line, index) => (
                 <>
+                  {index > 0 && <br class="hidden md:inline" />}
                   {line}
-                  <br />
                 </>
               ))
             }

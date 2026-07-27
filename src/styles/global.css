@@ -5,6 +5,7 @@
 @import 'tailwindcss/utilities' layer(utilities);
 
 :root {
+  color-scheme: light;
   --color-text: #444444;
   --font-sans: 'Noto Sans JP', 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', Meiryo, sans-serif;
   --font-lato: 'Lato', sans-serif;
