@@ -28,13 +28,21 @@
 
 @layer base {
   html {
+    font-size: 2.66667vw;
     scroll-behavior: smooth;
+  }
+
+  @media (width >= 768px) {
+    html {
+      font-size: 10px;
+    }
   }
 
   body {
     background-color: #fff;
     color: var(--color-text);
     font-family: var(--font-sans);
+    font-size: 1.4rem;
     line-height: 1.75;
   }
 
@@ -60,8 +68,6 @@
 
 @layer app {
   .lp-page {
-    margin-inline: auto;
-    max-width: 1440px;
     overflow-x: clip;
     width: 100%;
   }

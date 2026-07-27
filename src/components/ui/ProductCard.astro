@@ -10,7 +10,7 @@ interface Props {
 const { image, imageAlt, title, description, class: className = '' } = Astro.props;
 ---
 
-<article class:list={['flex w-full flex-col gap-6 md:gap-[clamp(24px,2.7778vw,40px)]', className]}>
+<article class:list={['flex w-full flex-col gap-[2.4rem] md:gap-[40px]', className]}>
   <div class="relative aspect-[640/427] w-full overflow-hidden">
     <img
       alt={imageAlt}
@@ -21,11 +21,9 @@ const { image, imageAlt, title, description, class: className = '' } = Astro.pro
       width="640"
     />
   </div>
-  <div class="text-text flex flex-col gap-5 md:gap-[clamp(20px,2.2222vw,32px)]">
-    <h2 class="leading-heading text-base font-bold tracking-[0.4px]">{title}</h2>
-    <p
-      class="leading-body text-xs tracking-[0.3px] md:text-[clamp(12px,0.9028vw,13px)] md:tracking-[0.325px]"
-    >
+  <div class="text-text flex flex-col gap-[2rem] md:gap-[32px]">
+    <h2 class="leading-heading text-[1.6rem] font-bold tracking-[0.4px]">{title}</h2>
+    <p class="leading-body text-[1.2rem] tracking-[0.3px] md:text-[13px] md:tracking-[0.325px]">
       {description}
     </p>
   </div>

@@ -8,38 +8,114 @@ import { about } from '@/constants/content';
   class="bg-white"
   id="about"
 >
-  <div class="grid md:grid-cols-2">
-    <div class="flex flex-col">
-      <div
-        class="flex flex-col gap-[52px] px-5 pt-16 pb-[72px] md:gap-[clamp(52px,6.9444vw,100px)] md:px-[clamp(20px,9.4444vw,136px)] md:pt-[clamp(64px,8.3333vw,120px)] md:pr-[clamp(20px,8.8889vw,128px)] md:pb-[clamp(72px,8.3333vw,120px)]"
-      >
-        <SectionHeading
-          en={about.heading.en}
-          sub={about.heading.sub}
-        />
-        <div class="flex flex-col gap-8 md:gap-[clamp(32px,2.7778vw,40px)]">
-          <h2
-            class="text-primary leading-heading text-2xl font-medium tracking-[0.6px] md:text-[clamp(24px,2.2222vw,32px)] md:tracking-[0.8px]"
-          >
+  <div class="md:mx-auto md:max-w-[1440px]">
+    <div class="grid md:grid-cols-2">
+      <div class="flex flex-col">
+        <div
+          class="flex flex-col gap-[5.2rem] px-[2rem] pt-[6.4rem] pb-[7.2rem] md:gap-[100px] md:px-[136px] md:pt-[120px] md:pr-[128px] md:pb-[120px]"
+        >
+          <SectionHeading
+            en={about.heading.en}
+            sub={about.heading.sub}
+          />
+          <div class="flex flex-col gap-[3.2rem] md:gap-[40px]">
+            <h2
+              class="text-primary leading-heading text-[2.4rem] font-medium tracking-[0.6px] md:text-[32px] md:tracking-[0.8px]"
+            >
+              {
+                about.lead.map((line) => (
+                  <>
+                    {line}
+                    <br />
+                  </>
+                ))
+              }
+            </h2>
+            <p class="leading-body text-[1.6rem] tracking-[0.4px]">{about.body}</p>
+          </div>
+        </div>
+
+        <div
+          class="bg-light-gray flex flex-col gap-[2rem] px-[2rem] pt-[5.2rem] pb-[6rem] md:gap-[40px] md:px-[120px] md:pt-[120px] md:pr-[148px] md:pb-[120px]"
+        >
+          <h3 class="text-primary leading-heading text-[2.4rem] font-medium tracking-[0.6px]">
             {
-              about.lead.map((line) => (
+              about.blockTitle.map((line) => (
                 <>
                   {line}
-                  <br />
+                  <br class="hidden md:inline" />
                 </>
               ))
             }
-          </h2>
-          <p class="leading-body text-base tracking-[0.4px]">{about.body}</p>
+          </h3>
+          <p class="leading-body text-[1.6rem] tracking-[0.4px]">{about.blockBody}</p>
         </div>
       </div>
 
       <div
-        class="bg-light-gray flex flex-col gap-5 px-5 pt-[52px] pb-[60px] md:gap-[clamp(20px,2.7778vw,40px)] md:px-[clamp(20px,8.3333vw,120px)] md:pt-[clamp(52px,8.3333vw,120px)] md:pr-[clamp(20px,10.2778vw,148px)] md:pb-[clamp(60px,8.3333vw,120px)]"
+        class="bg-primary flex flex-col gap-[6rem] px-[2rem] pt-[5.6rem] md:gap-[68px] md:px-[120px] md:pt-[140px]"
       >
-        <h3 class="text-primary leading-heading text-2xl font-medium tracking-[0.6px]">
+        <div class="flex flex-col items-center gap-[2rem] md:items-start md:gap-[40px]">
+          <div class="w-[28.8rem] md:w-[499px]">
+            <img
+              alt="ALOのイメージイラスト"
+              class="h-[21.4rem] w-full object-contain md:h-[370px]"
+              height="370"
+              loading="lazy"
+              src={lpAssets.aboutIllustration}
+              width="499"
+            />
+          </div>
+          <div class="flex w-full flex-col gap-[2.8rem] pl-0 md:pl-[60px]">
+            <div>
+              <p
+                class="font-lato text-[3.6rem] leading-[1.75] font-medium tracking-[1.8px] text-white md:text-[84px] md:leading-none md:tracking-normal"
+              >
+                {about.brand.short}
+              </p>
+              <p
+                class="font-lato leading-body mt-[0.4rem] text-[1.2rem] tracking-[1.2px] text-white md:mt-[12px] md:text-[24px] md:leading-none md:tracking-normal"
+              >
+                {about.brand.full}
+              </p>
+            </div>
+            <span
+              aria-hidden="true"
+              class="block h-px w-[4rem] bg-white"
+            ></span>
+          </div>
+        </div>
+
+        <div class="-mx-[2rem] md:mx-0">
+          <img
+            alt="ALOの室内イメージ"
+            class="aspect-square w-full object-cover md:aspect-auto md:h-[494px] md:w-full"
+            height="494"
+            loading="lazy"
+            src={lpAssets.aboutInterior}
+            width="480"
+          />
+        </div>
+      </div>
+    </div>
+
+    <div
+      class="grid items-start gap-[6rem] px-[2rem] pt-[4.8rem] pb-[7.2rem] md:grid-cols-2 md:items-center md:gap-0 md:px-0 md:py-0"
+    >
+      <div class="md:px-[120px] md:py-[124px]">
+        <img
+          alt="件数の推移グラフ"
+          class="mx-auto w-full max-w-[33.5rem] md:max-w-[570px]"
+          height="492"
+          loading="lazy"
+          src={lpAssets.chart}
+          width="570"
+        />
+      </div>
+      <div class="flex flex-col gap-[2.8rem] md:gap-[40px] md:pr-[120px]">
+        <h3 class="text-primary leading-heading text-[2.4rem] font-medium tracking-[0.6px]">
           {
-            about.blockTitle.map((line) => (
+            about.chart.title.map((line) => (
               <>
                 {line}
                 <br class="hidden md:inline" />
@@ -47,86 +123,8 @@ import { about } from '@/constants/content';
             ))
           }
         </h3>
-        <p class="leading-body text-base tracking-[0.4px]">{about.blockBody}</p>
+        <p class="leading-body text-[1.6rem] tracking-[0.4px]">{about.chart.body}</p>
       </div>
-    </div>
-
-    <div
-      class="bg-primary flex flex-col gap-[60px] px-5 pt-14 md:gap-[clamp(60px,4.7222vw,68px)] md:px-[clamp(20px,8.3333vw,120px)] md:pt-[clamp(56px,9.7222vw,140px)]"
-    >
-      <div
-        class="flex flex-col items-center gap-5 md:items-start md:gap-[clamp(20px,2.7778vw,40px)]"
-      >
-        <div class="w-[288px] md:w-[clamp(288px,34.6528vw,499px)]">
-          <img
-            alt="ALOのイメージイラスト"
-            class="h-[214px] w-full object-contain md:h-[clamp(214px,25.6944vw,370px)]"
-            height="370"
-            loading="lazy"
-            src={lpAssets.aboutIllustration}
-            width="499"
-          />
-        </div>
-        <div class="flex w-full flex-col gap-7 pl-0 md:pl-[clamp(0px,4.1667vw,60px)]">
-          <div>
-            <p
-              class="font-lato text-[36px] leading-[1.75] font-medium tracking-[1.8px] text-white md:text-[clamp(36px,5.8333vw,84px)] md:leading-none md:tracking-normal"
-            >
-              {about.brand.short}
-            </p>
-            <p
-              class="font-lato leading-body mt-1 text-xs tracking-[1.2px] text-white md:mt-[clamp(4px,0.8333vw,12px)] md:text-[clamp(12px,1.6667vw,24px)] md:leading-none md:tracking-normal"
-            >
-              {about.brand.full}
-            </p>
-          </div>
-          <span
-            aria-hidden="true"
-            class="block h-px w-10 bg-white"
-          ></span>
-        </div>
-      </div>
-
-      <div class="-mx-5 md:mx-0">
-        <img
-          alt="ALOの室内イメージ"
-          class="aspect-square w-full object-cover md:aspect-auto md:h-[clamp(0px,34.3056vw,494px)] md:w-full"
-          height="494"
-          loading="lazy"
-          src={lpAssets.aboutInterior}
-          width="480"
-        />
-      </div>
-    </div>
-  </div>
-
-  <div
-    class="grid items-start gap-[60px] px-5 pt-12 pb-[72px] md:grid-cols-2 md:items-center md:gap-0 md:px-0 md:py-0"
-  >
-    <div class="md:px-[clamp(0px,8.3333vw,120px)] md:py-[clamp(0px,8.6111vw,124px)]">
-      <img
-        alt="件数の推移グラフ"
-        class="mx-auto w-full max-w-[335px] md:max-w-[clamp(335px,39.5833vw,570px)]"
-        height="492"
-        loading="lazy"
-        src={lpAssets.chart}
-        width="570"
-      />
-    </div>
-    <div
-      class="flex flex-col gap-7 md:gap-[clamp(28px,2.7778vw,40px)] md:pr-[clamp(0px,8.3333vw,120px)]"
-    >
-      <h3 class="text-primary leading-heading text-2xl font-medium tracking-[0.6px]">
-        {
-          about.chart.title.map((line) => (
-            <>
-              {line}
-              <br class="hidden md:inline" />
-            </>
-          ))
-        }
-      </h3>
-      <p class="leading-body text-base tracking-[0.4px]">{about.chart.body}</p>
     </div>
   </div>
 </section>

@@ -16,74 +16,68 @@ import { navItems, site } from '@/constants/content';
   data-menu-dialog
   id="site-menu"
 >
-  <div class="flex items-start justify-end p-2.5">
+  <div class="flex items-start justify-end p-[1rem]">
     <button
       aria-label="メニューを閉じる"
-      class="bg-dark-gray relative flex size-[60px] items-center justify-center md:size-[clamp(60px,6.9444vw,100px)]"
+      class="bg-dark-gray relative flex size-[6rem] items-center justify-center md:size-[100px]"
       data-menu-close
       type="button"
     >
-      <span class="absolute block h-px w-12 rotate-45 bg-[#d9d9d9]"></span>
-      <span class="absolute block h-px w-12 -rotate-45 bg-[#d9d9d9]"></span>
+      <span class="absolute block h-px w-[4.8rem] rotate-45 bg-[#d9d9d9]"></span>
+      <span class="absolute block h-px w-[4.8rem] -rotate-45 bg-[#d9d9d9]"></span>
     </button>
   </div>
 
   <div
-    class="flex flex-1 flex-col items-center justify-center overflow-y-auto px-5 pb-10 md:px-[clamp(20px,8.3333vw,120px)] md:py-[clamp(40px,8.3333vw,120px)]"
+    class="flex flex-1 flex-col items-center justify-center overflow-y-auto px-[2rem] pb-[4rem] md:px-[120px] md:py-[120px]"
   >
-    <div class="w-full max-w-[960px] border-b border-white pb-10">
-      <p
-        class="text-[22px] leading-normal font-light tracking-[2.6px] md:text-[clamp(22px,1.8056vw,26px)]"
-      >
+    <div class="w-full max-w-[96rem] border-b border-white pb-[4rem]">
+      <p class="text-[2.2rem] leading-normal font-light tracking-[2.6px] md:text-[26px]">
         {site.name}
       </p>
     </div>
 
-    <div class="grid w-full max-w-[960px] gap-10 py-10 md:grid-cols-2 md:gap-0">
-      <div
-        class="flex flex-col gap-10 md:gap-[clamp(40px,3.8889vw,56px)] md:py-[clamp(0px,3.3333vw,48px)] md:pr-[clamp(0px,6.9444vw,100px)]"
-      >
-        <div class="flex gap-5 md:gap-[clamp(20px,2.5vw,36px)]">
+    <div class="grid w-full max-w-[96rem] gap-[4rem] py-[4rem] md:grid-cols-2 md:gap-0">
+      <div class="flex flex-col gap-[4rem] md:gap-[56px] md:py-[48px] md:pr-[100px]">
+        <div class="flex gap-[2rem] md:gap-[36px]">
           <div
-            class="flex size-9 shrink-0 items-center justify-center rounded-full border border-white md:size-[clamp(36px,3.6111vw,52px)]"
+            class="flex size-[3.6rem] shrink-0 items-center justify-center rounded-full border border-white md:size-[52px]"
           >
             <img
               alt=""
-              class="size-4 md:size-[clamp(16px,1.6667vw,24px)]"
+              class="size-[1.6rem] md:size-[24px]"
               height="16"
               src={lpAssets.iconMail}
               width="24"
             />
           </div>
-          <div
-            class="flex flex-1 flex-col gap-5 pt-1 md:gap-[clamp(20px,2.2222vw,32px)] md:pt-[clamp(0px,0.8333vw,12px)]"
-          >
-            <p class="text-base leading-normal font-bold">メールでのお問い合わせ</p>
+          <div class="flex flex-1 flex-col gap-[2rem] pt-[0.4rem] md:gap-[32px] md:pt-[12px]">
+            <p class="text-[1.6rem] leading-normal font-bold">メールでのお問い合わせ</p>
             <Button
-              class="w-full max-w-[292px]"
+              class="w-full max-w-[29.2rem]"
               href="#contact"
             />
           </div>
         </div>
 
-        <div class="flex gap-5 md:gap-[clamp(20px,2.5vw,36px)]">
+        <div class="flex gap-[2rem] md:gap-[36px]">
           <img
             alt=""
-            class="size-9 shrink-0 md:size-[clamp(36px,3.6111vw,52px)]"
+            class="size-[3.6rem] shrink-0 md:size-[52px]"
             height="52"
             src={lpAssets.iconPhoneCircle}
             width="52"
           />
-          <div class="flex flex-1 flex-col gap-5 pt-1 md:pt-[clamp(0px,0.8333vw,12px)]">
-            <p class="text-base leading-normal font-bold">お電話でのお問い合わせ</p>
+          <div class="flex flex-1 flex-col gap-[2rem] pt-[0.4rem] md:pt-[12px]">
+            <p class="text-[1.6rem] leading-normal font-bold">お電話でのお問い合わせ</p>
             <div class="leading-none">
               <a
-                class="font-lato text-[28px] tracking-[0.72px] md:text-[clamp(28px,2.5vw,36px)]"
+                class="font-lato text-[2.8rem] tracking-[0.72px] md:text-[36px]"
                 href={`tel:${site.tel.replace(/-/g, '')}`}
               >
                 {site.tel}
               </a>
-              <p class="mt-1 text-xs tracking-[0.325px] md:text-[clamp(12px,0.9028vw,13px)]">
+              <p class="mt-[0.4rem] text-[1.2rem] tracking-[0.325px] md:text-[13px]">
                 {site.telHours}
               </p>
             </div>
@@ -93,7 +87,7 @@ import { navItems, site } from '@/constants/content';
 
       <nav
         aria-label="サイト内メニュー"
-        class="flex flex-col gap-6 border-white/10 text-lg leading-relaxed tracking-[0.45px] md:gap-[clamp(24px,2.2222vw,32px)] md:border-l md:py-[clamp(0px,3.3333vw,48px)] md:pl-[clamp(0px,6.9444vw,100px)]"
+        class="flex flex-col gap-[2.4rem] border-white/10 text-[1.8rem] leading-relaxed tracking-[0.45px] md:gap-[32px] md:border-l md:py-[48px] md:pl-[100px]"
       >
         {
           navItems.map((item) => (

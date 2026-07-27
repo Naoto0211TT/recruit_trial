@@ -16,26 +16,28 @@ const productImages = [
   class="bg-white"
   id="product"
 >
-  <div
-    class="bg-primary flex flex-col gap-8 px-5 pt-16 pb-[132px] md:gap-[clamp(32px,2.7778vw,40px)] md:px-[clamp(20px,8.3333vw,120px)] md:pt-[clamp(64px,9.4444vw,136px)] md:pb-[clamp(132px,18.8889vw,272px)]"
-  >
-    <SectionHeading
-      color="white"
-      en={product.heading.en}
-      sub={product.heading.sub}
-    />
-    <div class="flex flex-col gap-5 text-white md:gap-[clamp(20px,1.6667vw,24px)]">
-      <h2
-        class="leading-heading text-[21px] font-medium tracking-[0.525px] md:text-[clamp(21px,1.6667vw,24px)] md:tracking-[0.6px]"
-      >
-        {product.lead}
-      </h2>
-      <p class="leading-body text-base tracking-[0.4px]">{product.body}</p>
+  <div class="bg-primary px-[2rem] pt-[6.4rem] pb-[13.2rem] md:px-0 md:pt-[136px] md:pb-[272px]">
+    <div
+      class="flex flex-col gap-[3.2rem] md:mx-auto md:max-w-[1440px] md:gap-[40px] md:px-[120px]"
+    >
+      <SectionHeading
+        color="white"
+        en={product.heading.en}
+        sub={product.heading.sub}
+      />
+      <div class="flex flex-col gap-[2rem] text-white md:gap-[24px]">
+        <h2
+          class="leading-heading text-[2.1rem] font-medium tracking-[0.525px] md:text-[24px] md:tracking-[0.6px]"
+        >
+          {product.lead}
+        </h2>
+        <p class="leading-body text-[1.6rem] tracking-[0.4px]">{product.body}</p>
+      </div>
     </div>
   </div>
 
   <div
-    class="relative -mt-[92px] grid grid-cols-1 gap-10 px-5 pb-16 md:-mt-[clamp(92px,13.5417vw,195px)] md:grid-cols-2 md:gap-x-[clamp(40px,4.1667vw,60px)] md:gap-y-[clamp(40px,4.1667vw,60px)] md:px-[clamp(20px,8.3333vw,120px)] md:pb-[clamp(64px,10vw,144px)]"
+    class="relative -mt-[9.2rem] grid grid-cols-1 gap-[4rem] px-[2rem] pb-[6.4rem] md:mx-auto md:-mt-[195px] md:max-w-[1440px] md:grid-cols-2 md:gap-x-[60px] md:gap-y-[60px] md:px-[120px] md:pb-[144px]"
   >
     {
       product.items.map((item, index) => (
