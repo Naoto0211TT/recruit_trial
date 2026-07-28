@@ -1,4 +1,5 @@
 ---
+import BreakLines from '@/components/ui/BreakLines.astro';
 import SectionHeading from '@/components/ui/SectionHeading.astro';
 import { lpAssets } from '@/constants/assets';
 import { about } from '@/constants/content';
@@ -10,60 +11,68 @@ import { about } from '@/constants/content';
 >
   <div class="grid md:grid-cols-2">
     <div
-      class="flex flex-col md:self-start"
+      class="flex min-w-0 flex-col md:self-start"
       data-about-col="text"
     >
       <div
-        class="px-[2rem] pt-[6.4rem] pb-[7.2rem] md:pt-[120px] md:pr-[128px] md:pb-[120px] md:pl-0"
+        class="lp-pad-l min-w-0 px-[2rem] pt-[6.4rem] pb-[7.2rem] md:px-0 md:pt-[120px] md:pb-[120px]"
       >
-        <div class="flex flex-col gap-[5.2rem] md:ml-auto md:max-w-[456px] md:gap-[100px]">
-          <SectionHeading
-            en={about.heading.en}
-            sub={about.heading.sub}
-          />
-          <div class="flex flex-col gap-[3.2rem] md:gap-[40px]">
+        <div
+          class="flex min-w-0 flex-col gap-[5.2rem] md:[margin-right:min(12.8rem,max(0px,calc(100%-45.6rem)))] md:ml-auto md:w-full md:max-w-[456px] md:gap-[100px]"
+        >
+          <div
+            class="lp-break-lock"
+            style="--lp-break-lock-w: 45.6rem; --lp-break-lock-gap: 0px"
+          >
+            <SectionHeading
+              en={about.heading.en}
+              sub={about.heading.sub}
+            />
+          </div>
+          <div class="flex min-w-0 flex-col gap-[3.2rem] md:gap-[40px]">
             <h2
-              class="text-primary leading-heading text-[2.4rem] font-medium tracking-[0.6px] md:text-[32px] md:tracking-[0.8px]"
+              class="lp-break-lock text-primary leading-heading text-[2.4rem] font-medium tracking-[0.6px] md:text-[32px] md:tracking-[0.8px]"
+              style="--lp-break-lock-w: 45.6rem; --lp-break-lock-gap: 0px"
             >
-              {
-                about.lead.map((line) => (
-                  <>
-                    {line}
-                    <br />
-                  </>
-                ))
-              }
+              <BreakLines lines={about.lead} />
             </h2>
-            <p class="leading-body text-[1.6rem] tracking-[0.4px]">{about.body}</p>
+            <p
+              class="leading-body w-full min-w-0 text-[1.6rem] tracking-[0.4px] md:max-w-[45.6rem]"
+            >
+              {about.body}
+            </p>
           </div>
         </div>
       </div>
 
       <div
-        class="bg-light-gray px-[2rem] pt-[5.2rem] pb-[6rem] md:pt-[120px] md:pr-[148px] md:pb-[120px] md:pl-0"
+        class="lp-pad-l bg-light-gray min-w-0 px-[2rem] pt-[5.2rem] pb-[6rem] md:px-0 md:pt-[120px] md:pb-[120px]"
       >
-        <div class="flex flex-col gap-[2rem] md:ml-auto md:max-w-[452px] md:gap-[40px]">
-          <h3 class="text-primary leading-heading text-[2.4rem] font-medium tracking-[0.6px]">
-            {
-              about.blockTitle.map((line) => (
-                <>
-                  {line}
-                  <br class="hidden md:inline" />
-                </>
-              ))
-            }
+        <div
+          class="flex min-w-0 flex-col gap-[2rem] md:[margin-right:min(14.8rem,max(0px,calc(100%-45.2rem)))] md:ml-auto md:w-full md:max-w-[452px] md:gap-[40px]"
+        >
+          <h3
+            class="lp-break-lock text-primary leading-heading text-[2.4rem] font-medium tracking-[0.6px]"
+            style="--lp-break-lock-w: 45.2rem; --lp-break-lock-gap: 0px"
+          >
+            <BreakLines
+              lines={about.blockTitle}
+              pcOnly
+            />
           </h3>
-          <p class="leading-body text-[1.6rem] tracking-[0.4px]">{about.blockBody}</p>
+          <p class="leading-body w-full min-w-0 text-[1.6rem] tracking-[0.4px] md:max-w-[45.2rem]">
+            {about.blockBody}
+          </p>
         </div>
       </div>
     </div>
 
     <div
-      class="bg-primary flex flex-col gap-[6rem] px-[2rem] pt-[5.6rem] md:relative md:gap-[68px] md:px-[120px] md:pt-[140px]"
+      class="bg-primary flex flex-col gap-[6rem] px-[2rem] pt-[5.6rem] md:relative md:gap-[68px] md:pt-[140px] md:pr-0 md:pl-[120px]"
       data-about-col="visual"
     >
       <div class="flex flex-col items-center gap-[2rem] md:items-start md:gap-[40px]">
-        <div class="w-[28.8rem] md:w-[499px] md:-translate-x-[45px]">
+        <div class="w-[28.8rem] md:w-[499px] md:shrink-0 md:-translate-x-[45px]">
           <img
             alt="ALOのイメージイラスト"
             class="h-auto w-full"
@@ -93,10 +102,10 @@ import { about } from '@/constants/content';
         </div>
       </div>
 
-      <div class="-mx-[2rem] md:relative md:z-10 md:mx-0 md:w-[600px] md:shrink-0">
+      <div class="-mx-[2rem] md:relative md:z-10 md:mx-0 md:w-full md:max-w-[600px]">
         <img
           alt="ALOの室内イメージ"
-          class="aspect-square w-full object-cover md:aspect-auto md:h-[600px] md:w-[600px] md:max-w-none"
+          class="aspect-square w-full object-cover"
           height="600"
           loading="lazy"
           src={lpAssets.aboutInterior}
@@ -106,11 +115,11 @@ import { about } from '@/constants/content';
     </div>
   </div>
 
-  <div class="md:mx-auto md:max-w-[1440px]">
+  <div class="lp-container md:py-0">
     <div
-      class="grid items-start gap-[6rem] px-[2rem] pt-[4.8rem] pb-[7.2rem] md:grid-cols-[720px_1fr] md:items-center md:gap-[120px] md:px-0 md:py-0"
+      class="grid items-start gap-[6rem] pt-[4.8rem] pb-[7.2rem] md:grid-cols-2 md:gap-[60px] md:pt-[124px] md:pb-[148px]"
     >
-      <div class="md:pt-[124px] md:pr-0 md:pb-[148px] md:pl-[120px]">
+      <div class="min-w-0">
         <img
           alt="件数の推移グラフ"
           class="mx-auto w-full max-w-[33.5rem] md:hidden"
@@ -121,25 +130,28 @@ import { about } from '@/constants/content';
         />
         <img
           alt="件数の推移グラフ"
-          class="hidden md:mx-0 md:block md:w-[570px]"
+          class="hidden w-full md:block"
           height="492"
           loading="lazy"
           src={lpAssets.chartPc}
           width="570"
         />
       </div>
-      <div class="flex flex-col gap-[2.8rem] md:gap-[40px] md:pr-[120px]">
-        <h3 class="text-primary leading-heading text-[2.4rem] font-medium tracking-[0.6px]">
-          {
-            about.chart.title.map((line, index) => (
-              <>
-                {index > 0 && <br class="hidden md:inline" />}
-                {line}
-              </>
-            ))
-          }
+      <div
+        class="flex min-w-0 flex-col gap-[2.8rem] md:mt-[136px] md:ml-auto md:w-full md:max-w-[480px] md:gap-[40px]"
+      >
+        <h3
+          class="lp-break-lock text-primary leading-heading text-[2.4rem] font-medium tracking-[0.6px]"
+          style="--lp-break-lock-w: 48rem; --lp-break-lock-gap: 0px"
+        >
+          <BreakLines
+            lines={about.chart.title}
+            pcOnly
+          />
         </h3>
-        <p class="leading-body text-[1.6rem] tracking-[0.4px]">{about.chart.body}</p>
+        <p class="leading-body w-full min-w-0 text-[1.6rem] tracking-[0.4px]">
+          {about.chart.body}
+        </p>
       </div>
     </div>
   </div>

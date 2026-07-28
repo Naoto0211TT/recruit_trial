@@ -44,7 +44,7 @@ import { hero, site } from '@/constants/content';
           </div>
         </div>
 
-        <div class="flex w-full flex-col gap-[2.8rem] md:gap-[60px]">
+        <div class="flex w-full min-w-0 flex-col gap-[2.8rem] md:gap-[60px]">
           <div class="flex flex-col gap-[2rem]">
             <p
               class="text-[2.5rem] leading-none tracking-[3.5px] md:text-[38px] md:tracking-[5.32px]"
@@ -58,16 +58,9 @@ import { hero, site } from '@/constants/content';
             </p>
           </div>
           <p
-            class="leading-body text-[1.4rem] tracking-[0.35px] md:text-[16px] md:font-bold md:tracking-[0.4px]"
+            class="leading-body w-full text-[1.4rem] tracking-[0.35px] md:max-w-[44.1rem] md:text-[16px] md:font-bold md:tracking-[0.4px]"
           >
-            {
-              hero.description.map((line, index) => (
-                <>
-                  {index > 0 && <br class="hidden md:inline" />}
-                  {line}
-                </>
-              ))
-            }
+            {hero.description}
           </p>
         </div>
       </div>

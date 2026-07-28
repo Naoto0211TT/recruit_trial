@@ -1,0 +1,18 @@
+---
+interface Props {
+  lines: readonly string[];
+  /** If true, `<br>` is PC-only (`hidden md:inline`) */
+  pcOnly?: boolean;
+}
+
+const { lines, pcOnly = false } = Astro.props;
+---
+
+{
+  lines.map((line, index) => (
+    <>
+      {index > 0 && (pcOnly ? <br class="hidden md:inline" /> : <br />)}
+      {line}
+    </>
+  ))
+}

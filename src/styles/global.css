@@ -71,6 +71,86 @@
   .lp-page {
     overflow-x: clip;
     width: 100%;
+    container-type: inline-size;
+    container-name: lp;
+    /* Reference: max-width 1280 + pad 40 → at 1440, outer inset = 80+40 = 120 */
+    --lp-gutter: 4rem;
+    --lp-content-max: 128rem;
+  }
+
+  @media (width >= 768px) {
+    .lp-page {
+      /* Reference site: .l-wrapper { min-width: 108rem } (=1080px at html 10px) */
+      min-width: 108rem;
+      overflow-x: visible;
+    }
+  }
+
+  /* Centered content band (Product / Footer / Chart etc.) */
+  .lp-container {
+    margin-inline: auto;
+    width: 100%;
+    padding-inline: 2rem;
+  }
+
+  @media (width >= 768px) {
+    .lp-container {
+      max-width: var(--lp-content-max);
+      padding-inline: var(--lp-gutter);
+    }
+
+    /*
+      Full-bleed sections: same inset as .lp-container content edge.
+      1440→1280 shrinks (120→40); ≤1280 stays 40px.
+      100cqw resolves against .lp-page (container-type: inline-size).
+    */
+    /* eslint-disable css/no-invalid-properties -- max()/100cqw false positive */
+    .lp-pad-x {
+      padding-inline: max(
+        var(--lp-gutter),
+        calc((100cqw - var(--lp-content-max)) / 2 + var(--lp-gutter))
+      );
+    }
+
+    .lp-pad-l {
+      padding-left: max(
+        var(--lp-gutter),
+        calc((100cqw - var(--lp-content-max)) / 2 + var(--lp-gutter))
+      );
+    }
+
+    .lp-pad-r {
+      padding-right: max(
+        var(--lp-gutter),
+        calc((100cqw - var(--lp-content-max)) / 2 + var(--lp-gutter))
+      );
+    }
+
+    /* Extend media to the column’s right edge (cancel right gutter) */
+    .lp-bleed-end {
+      margin-right: calc(
+        max(var(--lp-gutter), calc((100cqw - var(--lp-content-max)) / 2 + var(--lp-gutter))) * -1
+      );
+    }
+    /* eslint-enable css/no-invalid-properties */
+
+    /*
+      小見出し: Figmaどおりの固定改行を保つ（幅固定・min-width）。
+      Defaults; overridden per block via style="--lp-break-lock-w/gap".
+    */
+    .lp-break-lock {
+      --lp-break-lock-w: 45.6rem;
+      --lp-break-lock-gap: 0px;
+      box-sizing: border-box;
+      flex-shrink: 0;
+      width: var(--lp-break-lock-w);
+      min-width: var(--lp-break-lock-w);
+      max-width: var(--lp-break-lock-w);
+      margin-right: min(
+        var(--lp-break-lock-gap, 0px),
+        max(0px, calc(100% - var(--lp-break-lock-w)))
+      );
+    }
   }
 
   .font-lato {

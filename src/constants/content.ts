@@ -16,10 +16,7 @@ export const navItems = [
 export const hero = {
   catchCopy: 'この文章はダミーです。',
   subCopy: 'ANIMAL LIBERATION ORCHESTRA',
-  description: [
-    'この文章はダミーです。文字の大きさ、量、字間、行間等を',
-    '確認するために入れています。',
-  ],
+  description: 'この文章はダミーです。文字の大きさ、量、字間、行間等を確認するために入れています。',
 } as const;
 
 export const about = {
