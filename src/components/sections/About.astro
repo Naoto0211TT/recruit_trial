@@ -113,10 +113,18 @@ import { about } from '@/constants/content';
       <div class="md:pt-[124px] md:pr-0 md:pb-[148px] md:pl-[120px]">
         <img
           alt="件数の推移グラフ"
-          class="mx-auto w-full max-w-[33.5rem] md:mx-0 md:w-[570px] md:max-w-none"
+          class="mx-auto w-full max-w-[33.5rem] md:hidden"
+          height="289"
+          loading="lazy"
+          src={lpAssets.chartSp}
+          width="335"
+        />
+        <img
+          alt="件数の推移グラフ"
+          class="hidden md:mx-0 md:block md:w-[570px]"
           height="492"
           loading="lazy"
-          src={lpAssets.chart}
+          src={lpAssets.chartPc}
           width="570"
         />
       </div>
