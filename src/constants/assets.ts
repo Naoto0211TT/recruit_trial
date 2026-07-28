@@ -14,12 +14,12 @@ export const lpAssets = {
   product02: `${lp}/product-02.webp`,
   product03: `${lp}/product-03.webp`,
   product04: `${lp}/product-04.webp`,
-  iconPhoneCircle: `${lp}/icon-phone-circle.webp`,
-  iconArrowUp: `${lp}/icon-arrow-up.webp`,
   iconMail: `${lp}/icon-mail.webp`,
 } as const;
 
 export const iconAssets = {
   mail: `${icons}/icon-mail.svg`,
   phone: `${icons}/icon-phone.svg`,
+  phoneCircle: `${icons}/icon-phone-circle.svg`,
+  arrowUp: `${icons}/icon-arrow-up.svg`,
 } as const;
