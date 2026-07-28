@@ -7,7 +7,7 @@ export const lpAssets = {
   heroBg: `${lp}/hero-bg.webp`,
   logoAlo: `${lp}/logo-alo.webp`,
   aboutInterior: `${lp}/about-interior.webp`,
-  aboutIllustration: `${lp}/about-illustration.webp`,
+  aboutIllustration: `${lp}/about-illustration.svg`,
   chart: `${lp}/chart.webp`,
   product01: `${lp}/product-01.webp`,
   product02: `${lp}/product-02.webp`,
