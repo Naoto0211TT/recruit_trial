@@ -29,7 +29,8 @@
 
 @layer base {
   html {
-    font-size: 2.66667vw;
+    /* 375px幅で正確に 10px（2.66667vw の丸め誤差を避ける） */
+    font-size: calc(100vw / 37.5);
     scroll-behavior: smooth;
   }
 

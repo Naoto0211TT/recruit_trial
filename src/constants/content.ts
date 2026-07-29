@@ -17,6 +17,7 @@ export const hero = {
   catchCopy: 'この文章はダミーです。',
   subCopy: 'ANIMAL LIBERATION ORCHESTRA',
   description: 'この文章はダミーです。文字の大きさ、量、字間、行間等を確認するために入れています。',
+  scrollDown: 'SCROLL DOWN',
 } as const;
 
 export const about = {
