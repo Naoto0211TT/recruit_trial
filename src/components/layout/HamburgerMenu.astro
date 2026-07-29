@@ -1,116 +1,178 @@
 ---
 import Button from '@/components/ui/Button.astro';
-import { iconAssets, lpAssets } from '@/constants/assets';
+import { iconAssets } from '@/constants/assets';
 import { navItems, site } from '@/constants/content';
 ---
-
-<div
-  aria-hidden="true"
-  class="fixed inset-0 z-[60] hidden bg-black/50"
-  data-menu-overlay
->
-</div>
 
 <dialog
   class="bg-dark-gray fixed inset-0 z-[70] m-0 h-full max-h-none w-full max-w-none border-0 p-0 text-white open:flex open:flex-col"
   data-menu-dialog
   id="site-menu"
 >
-  <div class="flex items-start justify-end p-[1rem]">
+  {/* SP: site name + close / PC: close only */}
+  <div
+    class="absolute inset-x-0 top-0 z-10 flex h-[6rem] items-center justify-between pl-[1.6rem] md:pointer-events-none md:h-0 md:justify-end md:p-0"
+  >
+    <p class="leading-body text-[1.5rem] tracking-[0.375px] md:hidden">
+      {site.name}
+    </p>
     <button
       aria-label="メニューを閉じる"
-      class="bg-dark-gray relative flex size-[6rem] items-center justify-center md:size-[100px]"
+      class="bg-dark-gray relative flex size-[6rem] items-center justify-center md:pointer-events-auto md:absolute md:top-[10px] md:right-[12px] md:size-[100px]"
       data-menu-close
       type="button"
     >
-      <span class="absolute block h-px w-[4.8rem] rotate-45 bg-[#d9d9d9]"></span>
-      <span class="absolute block h-px w-[4.8rem] -rotate-45 bg-[#d9d9d9]"></span>
+      {
+        /*
+        Reference .p-menu__close i::before/::after:
+        PC 35×1px / SP 26×1px, background #fff
+      */
+      }
+      <span class="absolute block h-px w-[2.6rem] rotate-45 bg-white md:w-[35px]"></span>
+      <span class="absolute block h-px w-[2.6rem] -rotate-45 bg-white md:w-[35px]"></span>
     </button>
   </div>
 
   <div
-    class="lp-container flex flex-1 flex-col items-center justify-center overflow-y-auto pb-[4rem] md:py-[120px]"
+    class="flex flex-1 flex-col overflow-y-auto px-[2rem] pt-[6rem] pb-[4rem] md:items-center md:justify-center md:px-0 md:py-0"
   >
-    <div class="w-full max-w-[96rem] border-b border-white pb-[4rem]">
-      <p class="text-[2.2rem] leading-normal font-light tracking-[2.6px] md:text-[26px]">
-        {site.name}
-      </p>
-    </div>
+    <div class="mx-auto flex w-full max-w-[33.5rem] flex-col md:max-w-[960px]">
+      {
+        /*
+        PC title underline: 1px solid #fff (reference .p-menu__logo)
+      */
+      }
+      <div class="hidden border-b border-white pb-[40px] md:block">
+        <p class="text-[26px] leading-[39px] font-light tracking-[2.6px]">
+          {site.name}
+        </p>
+      </div>
 
-    <div class="grid w-full max-w-[96rem] gap-[4rem] py-[4rem] md:grid-cols-2 md:gap-0">
-      <div class="flex flex-col gap-[4rem] md:gap-[56px] md:py-[48px] md:pr-[100px]">
-        <div class="flex gap-[2rem] md:gap-[36px]">
+      {
+        /*
+        SP: nav → contacts（横線で区切る）
+        PC: contacts | nav（縦線で区切る）
+      */
+      }
+      <div
+        class="flex flex-col px-[2rem] pt-[3.2rem] md:mt-[40px] md:grid md:grid-cols-2 md:gap-0 md:px-0 md:pt-0"
+      >
+        {
+          /*
+          Contacts
+          SP top: 1px rgba(255,255,255,0.2)（参考サイト .c-card-contact）
+          PC right: 1px rgba(255,255,255,0.1)（参考サイト .p-menu__contact）
+        */
+        }
+        {
+          /*
+          SP Figma 12:635:
+          - ナビ下〜横線 40px / 横線〜メール行 20px
+          - メール〜電話ブロック間 32px + 電話側上余白 20px
+        */
+        }
+        <div
+          class="order-2 mt-[4rem] flex flex-col items-center gap-[3.2rem] border-t border-white/20 pt-[2rem] md:order-1 md:mt-0 md:items-stretch md:justify-center md:gap-[56px] md:border-t-0 md:border-r md:border-white/10 md:py-[52px] md:pr-[100px]"
+        >
+          {/* Mail — SVG includes circle */}
           <div
-            class="flex size-[3.6rem] shrink-0 items-center justify-center rounded-full border border-white md:size-[52px]"
+            class="flex w-full max-w-[29.5rem] flex-col items-center md:max-w-[380px] md:flex-row md:items-start md:gap-[36px]"
           >
-            <img
-              alt=""
-              class="size-[1.6rem] md:size-[24px]"
-              height="16"
-              src={lpAssets.iconMail}
-              width="24"
-            />
-          </div>
-          <div class="flex flex-1 flex-col gap-[2rem] pt-[0.4rem] md:gap-[32px] md:pt-[12px]">
-            <p class="text-[1.6rem] leading-normal font-bold">メールでのお問い合わせ</p>
-            <Button
-              class="w-full max-w-[29.2rem]"
-              href="#contact"
-            />
-          </div>
-        </div>
-
-        <div class="flex gap-[2rem] md:gap-[36px]">
-          <img
-            alt=""
-            class="size-[3.6rem] shrink-0 md:size-[52px]"
-            height="52"
-            src={iconAssets.phoneCircle}
-            width="52"
-          />
-          <div class="flex flex-1 flex-col gap-[2rem] pt-[0.4rem] md:pt-[12px]">
-            <p class="text-[1.6rem] leading-normal font-bold">お電話でのお問い合わせ</p>
-            <div class="leading-none">
-              <a
-                class="font-lato text-[2.8rem] tracking-[0.72px] md:text-[36px]"
-                href={`tel:${site.tel.replace(/-/g, '')}`}
-              >
-                {site.tel}
-              </a>
-              <p class="mt-[0.4rem] text-[1.2rem] tracking-[0.325px] md:text-[13px]">
-                {site.telHours}
+            <div class="flex items-center gap-[2rem] md:contents">
+              <img
+                alt=""
+                class="size-[3.6rem] shrink-0 md:size-[52px]"
+                height="52"
+                src={iconAssets.mailMenu}
+                width="52"
+              />
+              <p class="text-[1.6rem] leading-[2.4rem] font-bold md:hidden">
+                メールでのお問い合わせ
               </p>
+            </div>
+            <div
+              class="mt-[2rem] flex w-full flex-col md:mt-0 md:w-[292px] md:gap-[32px] md:pt-[12px]"
+            >
+              <p class="hidden text-[16px] leading-normal font-bold md:block">
+                メールでのお問い合わせ
+              </p>
+              <Button
+                class="w-full"
+                href="#contact"
+              />
+            </div>
+          </div>
+
+          {/* Phone — SVG includes circle */}
+          <div
+            class="flex w-full max-w-[29.5rem] flex-col items-center pt-[2rem] md:max-w-[380px] md:flex-row md:items-start md:gap-[36px] md:pt-0"
+          >
+            <div class="flex items-center gap-[2rem] md:contents">
+              <img
+                alt=""
+                class="size-[3.6rem] shrink-0 md:size-[52px]"
+                height="52"
+                src={iconAssets.phoneMenu}
+                width="52"
+              />
+              <p class="text-[1.6rem] leading-[2.4rem] font-bold md:hidden">
+                お電話でのお問い合わせ
+              </p>
+            </div>
+            <div
+              class="mt-[1.2rem] flex w-full flex-col items-center md:mt-0 md:w-[292px] md:items-start md:gap-[20px] md:pt-[12px]"
+            >
+              <p class="hidden text-[16px] leading-normal font-bold md:block">
+                お電話でのお問い合わせ
+              </p>
+              <div class="leading-none">
+                <a
+                  class="font-lato text-[3.6rem] font-light tracking-[0.72px] md:text-[36px]"
+                  href={`tel:${site.tel.replace(/-/g, '')}`}
+                >
+                  {site.tel}
+                </a>
+                <p
+                  class="font-lato mt-[0.4rem] text-[1.2rem] tracking-[0.3px] md:text-[13px] md:tracking-[0.325px]"
+                >
+                  {site.telHours}
+                </p>
+              </div>
             </div>
           </div>
         </div>
-      </div>
 
-      <nav
-        aria-label="サイト内メニュー"
-        class="flex flex-col gap-[2.4rem] border-white/10 text-[1.8rem] leading-relaxed tracking-[0.45px] md:gap-[32px] md:border-l md:py-[48px] md:pl-[100px]"
-      >
-        {
-          navItems.map((item) => (
-            <a
-              class="transition-opacity hover:opacity-70"
-              data-menu-link
-              href={item.href}
-            >
-              {item.label}
-            </a>
-          ))
-        }
-      </nav>
+        {/* Nav — SP 16px Noto / PC 18px（Figma 箱高 28 / 32） */}
+        <nav
+          aria-label="サイト内メニュー"
+          class="order-1 flex flex-col gap-[3.2rem] text-[1.6rem] leading-[2.8rem] tracking-[0.4px] md:order-2 md:gap-[32px] md:py-[48px] md:pl-[100px] md:text-[18px] md:leading-[32px] md:tracking-[0.45px]"
+        >
+          {
+            navItems.map((item) => (
+              <a
+                class="transition-opacity hover:opacity-70"
+                data-menu-link
+                href={item.href}
+              >
+                {item.label}
+              </a>
+            ))
+          }
+        </nav>
+      </div>
     </div>
   </div>
 </dialog>
 
 <script>
   const dialog = document.querySelector<HTMLDialogElement>('[data-menu-dialog]');
-  const overlay = document.querySelector<HTMLElement>('[data-menu-overlay]');
   const openButtons = document.querySelectorAll<HTMLButtonElement>('[data-menu-open]');
   const closeButton = document.querySelector<HTMLButtonElement>('[data-menu-close]');
   const menuLinks = document.querySelectorAll<HTMLAnchorElement>('[data-menu-link]');
+
+  /** Reference site (.l-menu): opacity/visibility 0.25s cubic-bezier(0, 0, 0.25, 1) */
+  const MENU_FADE_MS = 250;
+  let closing = false;
 
   const setExpanded = (expanded: boolean) => {
     openButtons.forEach((button) => {
@@ -119,17 +181,39 @@ import { navItems, site } from '@/constants/content';
   };
 
   const openMenu = () => {
-    dialog?.showModal();
-    overlay?.classList.remove('hidden');
+    if (!dialog || dialog.open) return;
+    closing = false;
+    dialog.showModal();
     document.body.style.overflow = 'hidden';
     setExpanded(true);
+    // Next frame so the opacity transition runs from 0 → 1
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        dialog.classList.add('is-open');
+      });
+    });
   };
 
   const closeMenu = () => {
-    dialog?.close();
-    overlay?.classList.add('hidden');
-    document.body.style.overflow = '';
+    if (!dialog?.open || closing) return;
+    closing = true;
+    dialog.classList.remove('is-open');
     setExpanded(false);
+
+    const finish = () => {
+      dialog.close();
+      document.body.style.overflow = '';
+      closing = false;
+    };
+
+    const onEnd = (event: TransitionEvent) => {
+      if (event.propertyName !== 'opacity') return;
+      dialog.removeEventListener('transitionend', onEnd);
+      finish();
+    };
+
+    dialog.addEventListener('transitionend', onEnd);
+    window.setTimeout(finish, MENU_FADE_MS + 50);
   };
 
   openButtons.forEach((button) => {
@@ -137,7 +221,6 @@ import { navItems, site } from '@/constants/content';
   });
 
   closeButton?.addEventListener('click', closeMenu);
-  overlay?.addEventListener('click', closeMenu);
 
   menuLinks.forEach((link) => {
     link.addEventListener('click', closeMenu);
@@ -154,6 +237,21 @@ import { navItems, site } from '@/constants/content';
 </script>
 
 <style>
+  /*
+    Reference: .l-menu {
+      opacity: 0; visibility: hidden;
+      transition: opacity 0.25s cubic-bezier(0, 0, 0.25, 1), visibility 0.25s;
+    }
+  */
+  [data-menu-dialog] {
+    opacity: 0;
+    transition: opacity 0.25s cubic-bezier(0, 0, 0.25, 1);
+  }
+
+  [data-menu-dialog].is-open {
+    opacity: 1;
+  }
+
   [data-menu-dialog]::backdrop {
     background: transparent;
   }

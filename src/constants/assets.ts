@@ -14,7 +14,6 @@ export const lpAssets = {
   product02: `${lp}/product-02.webp`,
   product03: `${lp}/product-03.webp`,
   product04: `${lp}/product-04.webp`,
-  iconMail: `${lp}/icon-mail.webp`,
 } as const;
 
 export const iconAssets = {
@@ -22,4 +21,7 @@ export const iconAssets = {
   phone: `${icons}/icon-phone.svg`,
   phoneCircle: `${icons}/icon-phone-circle.svg`,
   arrowUp: `${icons}/icon-arrow-up.svg`,
+  /** Hamburger menu only (white circle icons) */
+  mailMenu: `${icons}/icon-mail-menu.svg`,
+  phoneMenu: `${icons}/icon-phone-menu.svg`,
 } as const;
