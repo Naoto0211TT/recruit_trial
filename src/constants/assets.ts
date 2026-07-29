@@ -5,7 +5,7 @@ const icons = `${IMG_DIR}/icons`;
 
 export const lpAssets = {
   heroBg: `${lp}/hero-bg.webp`,
-  logoAlo: `${lp}/logo-alo.webp`,
+  logoAlo: `${lp}/logo-alo.svg`,
   aboutInterior: `${lp}/about-interior.webp`,
   aboutIllustration: `${lp}/about-illustration.svg`,
   chartPc: `${lp}/chart-pc.svg`,

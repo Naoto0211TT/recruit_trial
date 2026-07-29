@@ -106,31 +106,10 @@
       100cqw resolves against .lp-page (container-type: inline-size).
     */
     /* eslint-disable css/no-invalid-properties -- max()/100cqw false positive */
-    .lp-pad-x {
-      padding-inline: max(
-        var(--lp-gutter),
-        calc((100cqw - var(--lp-content-max)) / 2 + var(--lp-gutter))
-      );
-    }
-
     .lp-pad-l {
       padding-left: max(
         var(--lp-gutter),
         calc((100cqw - var(--lp-content-max)) / 2 + var(--lp-gutter))
-      );
-    }
-
-    .lp-pad-r {
-      padding-right: max(
-        var(--lp-gutter),
-        calc((100cqw - var(--lp-content-max)) / 2 + var(--lp-gutter))
-      );
-    }
-
-    /* Extend media to the column’s right edge (cancel right gutter) */
-    .lp-bleed-end {
-      margin-right: calc(
-        max(var(--lp-gutter), calc((100cqw - var(--lp-content-max)) / 2 + var(--lp-gutter))) * -1
       );
     }
     /* eslint-enable css/no-invalid-properties */

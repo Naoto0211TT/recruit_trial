@@ -19,17 +19,26 @@ import { hero, site } from '@/constants/content';
       />
     </div>
 
-    <div class="relative md:absolute md:inset-y-0 md:left-[50%] md:w-[50%]">
+    <div
+      class="relative md:absolute md:inset-y-0 md:left-[50%] md:w-[50%]"
+      data-hero-panel
+    >
       <div
         aria-hidden="true"
         class="absolute top-0 left-0 hidden h-full w-[38.889%] bg-black/50 md:block"
       >
       </div>
 
-      {/* Figma 7:138 — Frame 17 内 left:486 top:825 / Lato Light 11px */}
+      {
+        /*
+        PC only. Default = Figma 1440 (left 486 / top 825).
+        JS keeps X tied to logo scale; Y prefers bottom 64px and tightens before overlapping copy.
+      */
+      }
       <p
         aria-hidden="true"
         class="font-lato pointer-events-none absolute top-[825px] left-[486px] hidden text-[11px] leading-none font-light tracking-[0.275px] text-white md:block"
+        data-hero-scroll
       >
         {hero.scrollDown}
       </p>
@@ -41,10 +50,20 @@ import { hero, site } from '@/constants/content';
           <p class="hidden leading-[1.25] font-light tracking-[2.6px] md:block md:text-[26px]">
             {site.name}
           </p>
-          <div class="w-full max-w-[33.5rem] md:max-w-[563px]">
+          {
+            /*
+            PC: max 563×113, shrinks with column until .lp-page min-width (1080px) locks layout
+            (horizontal scrollbar) — same pattern as reference min-width wrapper.
+          */
+          }
+          <div
+            class="w-full max-w-[33.5rem] md:max-w-[563px]"
+            data-hero-logo-wrap
+          >
             <img
               alt="ALO ANIMAL LIBERATION ORCHESTRA"
-              class="h-[6.7rem] w-full object-contain object-left md:h-[113px]"
+              class="h-[6.7rem] w-full object-contain object-left md:aspect-[563/113] md:h-auto md:w-full"
+              data-hero-logo
               height="113"
               src={lpAssets.logoAlo}
               width="563"
@@ -54,11 +73,11 @@ import { hero, site } from '@/constants/content';
 
         <div class="flex w-full min-w-0 flex-col gap-[2.8rem] md:gap-[60px]">
           <div class="flex flex-col gap-[2rem]">
-            <p
-              class="text-[2.5rem] leading-none tracking-[3.5px] md:text-[38px] md:tracking-[5.32px]"
+            <h1
+              class="text-[2.5rem] leading-none tracking-[3.5px] md:text-[38px] md:tracking-[5.32px] md:whitespace-nowrap"
             >
               {hero.catchCopy}
-            </p>
+            </h1>
             <p
               class="font-lato text-[1.2rem] leading-none font-light tracking-[2.58px] md:text-[18px] md:tracking-[3.87px]"
             >
@@ -67,6 +86,7 @@ import { hero, site } from '@/constants/content';
           </div>
           <p
             class="leading-body w-full text-[1.4rem] tracking-[0.35px] md:max-w-[44.1rem] md:text-[16px] md:font-bold md:tracking-[0.4px]"
+            data-hero-desc
           >
             {hero.description}
           </p>
@@ -75,3 +95,47 @@ import { hero, site } from '@/constants/content';
     </div>
   </div>
 </section>
+
+<script>
+  const MD = 768;
+  const LOGO_DESIGN_W = 563;
+  const SCROLL_OFFSET_IN_LOGO = 410; // 486 - 76 at 1440
+  const PREFERRED_BOTTOM = 64; // 900 - 825 - 11
+  const MIN_GAP = 24;
+
+  const panel = document.querySelector<HTMLElement>('[data-hero-panel]');
+  const logo = document.querySelector<HTMLElement>('[data-hero-logo]');
+  const desc = document.querySelector<HTMLElement>('[data-hero-desc]');
+  const scroll = document.querySelector<HTMLElement>('[data-hero-scroll]');
+
+  const updateScrollDownPosition = () => {
+    if (!panel || !logo || !scroll || !desc) return;
+
+    if (window.innerWidth < MD) {
+      scroll.style.left = '';
+      scroll.style.top = '';
+      scroll.style.bottom = '';
+      return;
+    }
+
+    const panelBox = panel.getBoundingClientRect();
+    const logoBox = logo.getBoundingClientRect();
+    const descBox = desc.getBoundingClientRect();
+    const scrollH = scroll.getBoundingClientRect().height || 11;
+    const scale = logoBox.width / LOGO_DESIGN_W;
+
+    // Keep 1440 X relationship to the logo (486 = 76 + 410 at full size).
+    const left = logoBox.left - panelBox.left + SCROLL_OFFSET_IN_LOGO * scale;
+    scroll.style.left = `${left}px`;
+
+    // Prefer Figma bottom clearance; reduce it just before overlapping the description.
+    const maxBottom = panelBox.bottom - descBox.bottom - scrollH - MIN_GAP;
+    const bottom = Math.min(PREFERRED_BOTTOM, Math.max(0, maxBottom));
+    scroll.style.top = 'auto';
+    scroll.style.bottom = `${bottom}px`;
+  };
+
+  updateScrollDownPosition();
+  window.addEventListener('resize', updateScrollDownPosition, { passive: true });
+  window.addEventListener('load', updateScrollDownPosition);
+</script>
