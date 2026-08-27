@@ -15,9 +15,9 @@ export const breakPoints = {
 
 export const siteName = `日本ALO音楽研究所`;
 
-export const siteUrl = `https://******.linea.work`;
+export const siteUrl = `https://naoto0211tt.github.io`;
 
-export const basePath = ``;
+export const basePath = `/recruit_trial`;
 
 export const distDir = `dist`;
 
