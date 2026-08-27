@@ -4,6 +4,8 @@
 
 Figmaで提供されたデザインをもとに、Astro / TypeScript / Tailwind CSSを使用して実装しました。
 
+![Coding Trial Preview](./docs/preview.webp)
+
 ## Demo
 
 [Live Demo](https://naoto0211tt.github.io/recruit_trial/)
